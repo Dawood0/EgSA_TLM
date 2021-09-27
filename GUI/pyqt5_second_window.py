@@ -10,63 +10,199 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from PyQt5.QtWidgets import *
-from PyQt5 import QtCore
-from PyQt5.QtGui import *
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
-        Widget.resize(423, 477)
+        Widget.resize(305, 554)
+        self.checkBox_6 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_6.setGeometry(QtCore.QRect(30, 40, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_6.setFont(font)
+        self.checkBox_6.setObjectName("checkBox_6")
 
 
+        # choose button
         self.pushButton = QtWidgets.QPushButton(Widget)
-        self.pushButton.setGeometry(QtCore.QRect(120, 360, 181, 71))
-
+        self.pushButton.setGeometry(QtCore.QRect(64, 270, 171, 51))
         font = QtGui.QFont()
         font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-
-        # self.comboBox_2.setFont(font)
-
-
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
-        # self.label = QtWidgets.QLabel(Widget)
-        # self.label.setGeometry(QtCore.QRect(180, 270, 121, 51))
-        #
-        # font = QtGui.QFont()
-        # font.setPointSize(16)
-        #
-        # self.label.setFont(font)
-        # self.label.setObjectName("label")
+
+
+        # clear button
+        self.pushButton_2 = QtWidgets.QPushButton(Widget)
+        self.pushButton_2.setGeometry(QtCore.QRect(100, 325, 95, 31))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setObjectName("pushButton")
+
+        # send button
+        self.pushButton_1 = QtWidgets.QPushButton(Widget)
+        self.pushButton_1.setGeometry(QtCore.QRect(70, 360, 161, 51))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.pushButton_1.setFont(font)
+        self.pushButton_1.setObjectName("pushButton")
+
+
+        self.checkBox_7 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_7.setGeometry(QtCore.QRect(30, 60, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_7.setFont(font)
+        self.checkBox_7.setObjectName("checkBox_7")
+        self.checkBox_8 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_8.setGeometry(QtCore.QRect(30, 80, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_8.setFont(font)
+        self.checkBox_8.setObjectName("checkBox_8")
+        self.checkBox_9 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_9.setGeometry(QtCore.QRect(30, 100, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_9.setFont(font)
+        self.checkBox_9.setObjectName("checkBox_9")
+
+        self.checkBox_1 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_1.setGeometry(QtCore.QRect(30, 120, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_1.setFont(font)
+        self.checkBox_1.setObjectName("checkBox_1")
+
+        self.checkBox_2 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_2.setGeometry(QtCore.QRect(30, 140, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_2.setFont(font)
+        self.checkBox_2.setObjectName("checkBox_1")
+
+        self.checkBox_3 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_3.setGeometry(QtCore.QRect(30, 160, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_3.setFont(font)
+        self.checkBox_3.setObjectName("checkBox_1")
+
+        self.checkBox_4 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_4.setGeometry(QtCore.QRect(30, 180, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_4.setFont(font)
+        self.checkBox_4.setObjectName("checkBox_1")
+
+        self.checkBox_5 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_5.setGeometry(QtCore.QRect(30, 200, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_5.setFont(font)
+        self.checkBox_5.setObjectName("checkBox_1")
+
+        self.checkBox_10 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_10.setGeometry(QtCore.QRect(30, 220, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_10.setFont(font)
+        self.checkBox_10.setObjectName("checkBox_1")
+
+        self.checkBox_11 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_11.setGeometry(QtCore.QRect(30, 240, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_11.setFont(font)
+        self.checkBox_11.setObjectName("checkBox_1")
+
+
+        self.text = QtWidgets.QTextBrowser(Widget)
+        self.text.setGeometry(QtCore.QRect(50, 430, 200, 100))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.text.setFont(font)
+        self.text.setObjectName("label")
+
+        # self.text=QtWidgets.QTextBrowser(Widget)
+
 
 
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)
 
-        # making the button function
-        self.pushButton.clicked.connect(lambda:self.action())           # must use lambda here
 
 
 
+        self.pushButton.clicked.connect(lambda: self.checked())
+        self.pushButton_1.clicked.connect(lambda: self.send())
+        self.pushButton_2.clicked.connect(lambda: self.clear())
+
+
+        self.s = "Commands Sent:\n"
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
         Widget.setWindowTitle(_translate("Widget", "Widget"))
-        self.pushButton.setText(_translate("Widget", "Save"))
-        self.label.setText(_translate("Widget", "Alexandria"))
+        self.checkBox_6.setText(_translate("Widget", "openCom"))
+        self.checkBox_7.setText(_translate("Widget", "closeCom"))
+        self.checkBox_8.setText(_translate("Widget", "openADCS"))
+        self.checkBox_9.setText(_translate("Widget", "closeADCS"))
+        self.checkBox_1.setText(_translate("Widget", "openPayload"))
+        self.checkBox_2.setText(_translate("Widget", "closePayload"))
+        self.checkBox_3.setText(_translate("Widget", "getTLM"))
+        self.checkBox_4.setText(_translate("Widget", "getStoredTLM"))
+        self.checkBox_5.setText(_translate("Widget", "getImage"))
+        self.checkBox_10.setText(_translate("Widget", "clearTLM"))
+        self.checkBox_11.setText(_translate("Widget", "clearImgs"))
+
+        self.pushButton.setText(_translate("Widget", "Choose commands"))
+        self.pushButton_1.setText(_translate("Widget", "Send Commands"))
+        self.pushButton_2.setText(_translate("Widget", "Clear"))
+        self.text.setText(_translate("Widget", ""))
 
 
-    # here the coordinates are needed to be put in the variable x to be displayed and sent to the second table
-    def action(self):
-        # x=self.comboBox_2.currentText()
-        # self.label.setText(x)
-        pass
+    def checked(self):
+        l="openCom,closeCom,openADCS,closeADCS,openPayload,closePayload,getTLM,getStoredTLM,getImage,clearTLM,clearImgs".split(",")
 
+        if self.checkBox_6.isChecked():
+            self.s+=l[0]+"\n"
+        elif self.checkBox_7.isChecked():
+            self.s += l[1] + "\n"
+        elif self.checkBox_8.isChecked():
+            self.s += l[2] + "\n"
+        elif self.checkBox_9.isChecked():
+            self.s += l[3] + "\n"
 
+        elif self.checkBox_1.isChecked():
+            self.s += l[4] + "\n"
+        elif self.checkBox_2.isChecked():
+            self.s += l[5] + "\n"
+        elif self.checkBox_3.isChecked():
+            self.s += l[6] + "\n"
+        elif self.checkBox_4.isChecked():
+            self.s += l[7] + "\n"
+        elif self.checkBox_5.isChecked():
+            self.s += l[8] + "\n"
+        elif self.checkBox_10.isChecked():
+            self.s += l[9] + "\n"
+        elif self.checkBox_11.isChecked():
+            self.s += l[10] + "\n"
+        self.text.setText(self.s)
+        # print(self.checkBox_6.())
+        for i in range(1,12):
+            exec("self.checkBox_{}.setChecked(False)".format(i))
 
+    def clear(self):
+        self.s="Commands Sent:\n"
+        self.text.setText(self.s)
+        for i in range(1,12):
+            exec("self.checkBox_{}.setChecked(False)".format(i))
+
+    def send(self):
+        # put here the sending function                     ###########
+        print(self.s.split("\n")[1:-1])
 
 if __name__ == "__main__":
     import sys
