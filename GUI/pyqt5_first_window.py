@@ -83,7 +83,9 @@ class Ui_Widget(object):
         newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
 
         with open(newPath + "\\chosen_city.txt", "w") as f:
-            f.writelines(x)
+            f.writelines(x.strip())
+        # with open(newPath + "\\chosen_city.txt", "r") as f:
+        #     print(f.readlines())
 
 
 if __name__ == "__main__":
