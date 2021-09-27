@@ -55,19 +55,32 @@ class Ui_Widget(object):
         QtCore.QMetaObject.connectSlotsByName(Widget)
 
         # making the button function
-        self.pushButton.clicked.connect(lambda:self.action())
+        self.pushButton.clicked.connect(lambda:self.action())           # must use lambda here
+
+        # real time showing the coordinates of the city chosen
+        self.comboBox_2.activated.connect(self.handleActivated)         # handles the real time showing the city chosen
+
+    def handleActivated(self, index):
+        # print(self.comboBox_2.itemText(index))
+        # print(self.comboBox_2.itemData(index))
+        self.label.setText(self.comboBox_2.currentText())
+
 
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
         Widget.setWindowTitle(_translate("Widget", "Widget"))
         self.pushButton.setText(_translate("Widget", "Save"))
-        self.label.setText(_translate("Widget", "...."))
+        self.label.setText(_translate("Widget", "Alexandria"))
+
 
     # here the coordinates are needed to be put in the variable x to be displayed and sent to the second table
     def action(self):
-        x=self.comboBox_2.currentText()
-        self.label.setText(x)
+        # x=self.comboBox_2.currentText()
+        # self.label.setText(x)
+        pass
+
+
 
 
 if __name__ == "__main__":
