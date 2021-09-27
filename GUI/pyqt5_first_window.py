@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5 import QtCore
 from PyQt5.QtGui import *
+import os
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -76,11 +77,13 @@ class Ui_Widget(object):
 
     # here the coordinates are needed to be put in the variable x to be displayed and sent to the second table
     def action(self):
-        # x=self.comboBox_2.currentText()
+        x = self.comboBox_2.currentText()
         # self.label.setText(x)
-        pass
 
+        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
 
+        with open(newPath + "\\chosen_city.txt", "w") as f:
+            f.writelines(x)
 
 
 if __name__ == "__main__":
