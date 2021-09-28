@@ -362,7 +362,7 @@ class Ui_Widget(QtWidgets.QWidget):
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
-        Widget.setWindowTitle(_translate("Widget", "Widget"))
+        Widget.setWindowTitle(_translate("Widget", "Telemetry Subsystem"))
         self.label.setText(_translate("Widget", "Server"))
         self.label_2.setText(_translate("Widget", "Client"))
         self.label_3.setText(_translate("Widget", "ADCS"))
