@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import os
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -202,7 +202,12 @@ class Ui_Widget(object):
 
     def send(self):
         # put here the sending function                     ###########
-        print(self.s.split("\n")[1:-1])
+
+        x=self.s.split("\n")[1:-1]
+        print(x)
+        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+        with open(newPath + "\\commands.txt", "w") as f:
+            f.writelines(",".join(x))
 
 if __name__ == "__main__":
     import sys
