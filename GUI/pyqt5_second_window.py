@@ -285,6 +285,8 @@ class Ui_Widget(QtWidgets.QWidget):
         newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
         with open(newPath + "\\commands.txt", "w") as f:
             f.write(",".join(self.s.split("\n")[:-1]))
+        from BACK.stalliete_CTRL import text_file,packet
+        text_file(packet(2,3))
 
 
     def showTime(self):

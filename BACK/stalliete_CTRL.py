@@ -1,5 +1,5 @@
 import json
-from bitarray import bitarray
+
 
 json_file = json.load(open('../test.json'))
 commands_front = (open('../txt_files/commands.txt').read()).split(',')

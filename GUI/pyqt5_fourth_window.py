@@ -141,7 +141,7 @@ class Ui_Widget(QtWidgets.QWidget):
             if self.l == [""]: self.l = []
         if len(self.l) != 0:
             try:
-                self.textBrowser.setText(self.l[self.cnt])
+                self.textBrowser.append(self.l[self.cnt])
             except:
                 pass
             self.cnt += 1
