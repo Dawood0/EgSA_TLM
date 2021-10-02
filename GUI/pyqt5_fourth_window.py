@@ -9,9 +9,10 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QTimer, QTime, Qt
 
 
-class Ui_Widget(object):
+class Ui_Widget(QtWidgets.QWidget):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
         Widget.resize(800, 451)
@@ -95,6 +96,18 @@ class Ui_Widget(object):
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
 
+        self.pushButton = QtWidgets.QPushButton(Widget)
+        self.pushButton.setGeometry(QtCore.QRect(1300, 10, 141, 41))
+        self.pushButton.setObjectName("pushButton")
+
+        timer = QTimer(self)
+        timer.timeout.connect(self.showTime)
+        timer.start(1000)  # update every second
+        self.showTime()
+
+        self.pushButton.clicked.connect(lambda: self.send())
+        self.cnt = 0
+
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)
 
@@ -110,9 +123,49 @@ class Ui_Widget(object):
         self.label_6.setText(_translate("Widget", "Sent to telemetry"))
         self.label_7.setText(_translate("Widget", "Sent to satallite control"))
 
+    def showTime(self):
+        currentTime = QTime.currentTime()
+
+        displayTxt = currentTime.toString('hh:mm:ss')
+        # print(displayTxt)
+        self.pushButton.click()
+
+    def send(self):
+        import os
+        import time
+        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+        self.l = []
+
+        with open(newPath + "\\commands.txt", "r") as f:
+            self.l = f.readline().split(",")
+            if self.l == [""]: self.l = []
+        if len(self.l) != 0:
+            try:
+                self.textBrowser.setText(self.l[self.cnt])
+            except:
+                pass
+            self.cnt += 1
+
+        else:
+            self.cnt = 0
+
+        print(self.l)
+
+        if self.cnt == len(self.l):
+            # print("skdfjkdjfdkfjdkfjdfk")
+            with open(newPath + "\\commands.txt", "w") as f:
+                f.write("")
+
+            # time.sleep(1)
+
+        #         time.sleep(1000)
+        # with open(newPath + "\\commands.txt", "w") as f:
+        #     f.write("")
+
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     Widget = QtWidgets.QWidget()
     ui = Ui_Widget()
