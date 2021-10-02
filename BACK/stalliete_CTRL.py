@@ -8,7 +8,7 @@ pkt_ver = '000'
 pkt_type = '0'
 sec_hdr_flg = '1'
 seq_flg = '11'
-pkt_data_len = '2'
+pkt_data_len = '{0:016b}'.format(3)
 
 def increment(binary):
     if len(binary) == 0:
@@ -32,12 +32,22 @@ def packet(x,y):
     for command in commands_front:
         if command == 'getimage':
             opcode,apid = commands(command)
-            package = bytes("%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,apid,seq_flg,pkt_name,pkt_data_len,opcode,x,y),'utf-8')
+            package = "%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,apid,seq_flg,pkt_name,pkt_data_len,opcode,'{0:08b}'.format(x),'{0:08b}'.format(y))
             pkt_name = increment(pkt_name)
             list_package.append(package)
         else:
             opcode,apid = commands(command)
-            package = bytes("%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,apid,seq_flg,pkt_name,pkt_data_len,opcode),'utf-8')
+            package = "%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,apid,seq_flg,pkt_name,pkt_data_len,opcode)
             pkt_name = increment(pkt_name)
             list_package.append(package)
     return list_package
+
+def text_file(packet):
+    increment = 0
+    with open('../txt_files/encode.txt','w') as f:
+        for pac in packet:
+            f.write(str(increment)+' '+str(pac)+'\n')
+            increment+=1
+    f.close()
+
+text_file(packet(2,3))
