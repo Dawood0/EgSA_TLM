@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Widget(object):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
-        Widget.resize(305, 554)
+        Widget.resize(305, 600)
         self.checkBox_6 = QtWidgets.QCheckBox(Widget)
         self.checkBox_6.setGeometry(QtCore.QRect(30, 40, 261, 20))
         font = QtGui.QFont()
@@ -157,12 +157,22 @@ class Ui_Widget(object):
 
         # self.text=QtWidgets.QTextBrowser(Widget)
 
+        self.label = QtWidgets.QLabel("Test", Widget)
+        self.label.setGeometry(QtCore.QRect(125, 555, 53, 30))
+        self.label.setStyleSheet("background:rgb(255,50,50)")
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setPointSize(12)
+        self.label.setFont(font)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+
+
 
 
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)
 
-
+        self.label.hide()
 
 
         self.pushButton.clicked.connect(lambda: self.checked())
@@ -193,6 +203,7 @@ class Ui_Widget(object):
         self.text.setText(_translate("Widget", ""))
         self.label_8.setText(_translate("Widget", "Satellite Control"))
         self.label_9.setText(_translate("Widget", "Commands:"))
+        self.label.setText(_translate("Widget", "ACK"))
 
 
     def checked(self):
@@ -229,12 +240,26 @@ class Ui_Widget(object):
     def clear(self):
         self.s=""
         self.text.setText(self.s)
+
         for i in range(1,12):
             exec("self.checkBox_{}.setChecked(False)".format(i))
 
+
+
     def send(self):
         # put here the sending function                     ###########
-        print(self.s.split("\n")[1:-1])
+
+
+
+        l=self.s.split("\n")[:-1]
+
+        for i in range(len(l)):
+            if True:            # change this condition to whatever u want
+                l[i]=l[i].ljust(15)+"--> OK"
+        self.s="\n".join(l)
+        self.text.setText(self.s)
+
+
 
 if __name__ == "__main__":
     import sys
