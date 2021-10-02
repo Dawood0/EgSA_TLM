@@ -1,1 +1,1 @@
-getStoredTLM,openPayload
+getStoredTLM,closePayload,openPayload,getimage,clearimgs,captureImage
