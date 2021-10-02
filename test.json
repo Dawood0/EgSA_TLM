@@ -1,50 +1,54 @@
 {
-  "openCom": 
+  "openCom":
    {"opcode" : "0000",
      "vaip": "00000000001"
    },
-   
-  "Closecom": 
+
+  "Closecom":
    {"opcode" : "0001",
      "vaip": "00000000001"
    },
-   
-    "openADCS": 
+
+    "openADCS":
    {"opcode" : "0010",
      "vaip": "00000000010"
    },
-   
-     "CloseADCS": 
+
+     "CloseADCS":
    {"opcode" : "0011",
      "vaip": "00000000010"
    },
-   
-     "openPayload": 
+
+     "openPayload":
    {"opcode" : "0100",
      "vaip": "00000000101"
    },
-     "closePayload": 
+     "closePayload":
    {"opcode" : "0101",
      "vaip": "00000000101"
    },
-     "getTLM": 
+     "getTLM":
    {"opcode" : "0110",
      "vaip": ""
    },
-     "getStoredTLM": 
+     "getStoredTLM":
    {"opcode" : "0111",
      "vaip": "00000000011"
    },
-     "getimage": 
+     "getimage":
    {"opcode" : "1000",
      "vaip": "00000000101"
    },
-     "clearTLM": 
+     "clearTLM":
    {"opcode" : "1001",
      "vaip": "00000000011"
    },
-     "clearimgs": 
+     "clearimgs":
    {"opcode" : "1010",
      "vaip": "00000000011"
-   }
+   },
+      "captureImage":
+      {"opcode" : "1011",
+        "vaip": "00000000101"
+      }
 }
