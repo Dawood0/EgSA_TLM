@@ -9,9 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QTimer, QTime, Qt
 
-
-class Ui_Widget(object):
+class Ui_Widget(QtWidgets.QWidget):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
         Widget.resize(305, 600)
@@ -166,7 +166,10 @@ class Ui_Widget(object):
         self.label.setFont(font)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
 
-
+        # hidden pushButton
+        self.pushButton_0 = QtWidgets.QPushButton(Widget)
+        self.pushButton_0.setGeometry(QtCore.QRect(1300, 10, 141, 41))
+        self.pushButton_0.setObjectName("pushButton")
 
 
         self.retranslateUi(Widget)
@@ -175,11 +178,19 @@ class Ui_Widget(object):
         self.label.hide()
 
 
+        timer = QTimer(self)
+        timer.timeout.connect(self.showTime)
+        timer.start(1000)  # update every second
+        self.showTime()
+
+        self.pushButton_0.hide()
+
         self.pushButton.clicked.connect(lambda: self.checked())
         self.pushButton_1.clicked.connect(lambda: self.send())
         self.pushButton_2.clicked.connect(lambda: self.clear())
+        self.pushButton_0.clicked.connect(lambda: self.show())
 
-
+        self.state=0
         self.s = ""
 
     def retranslateUi(self, Widget):
@@ -204,6 +215,8 @@ class Ui_Widget(object):
         self.label_8.setText(_translate("Widget", "Satellite Control"))
         self.label_9.setText(_translate("Widget", "Commands:"))
         self.label.setText(_translate("Widget", "ACK"))
+
+        self.pushButton_0.setText(_translate("Widget", "Show"))
 
 
     def checked(self):
@@ -244,20 +257,42 @@ class Ui_Widget(object):
         for i in range(1,12):
             exec("self.checkBox_{}.setChecked(False)".format(i))
 
+    def show(self):
+        import os
+        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+        # print(newPath+"\chosen_city.txt")
+        with open(newPath + "\\chosen_city.txt", "r") as f:
+            xx = f.readline()
+            l = self.s.split("\n")[:-1]
+
+
+
+            #       here change the condition if the packet is sent
+            if xx=="ahmed" and ">" not in self.s and self.state==1:
+                l = self.s.split("\n")[:-1]
+
+                for i in range(len(l)):
+                    if True:  # change this condition to whatever u want
+                        l[i] = l[i].ljust(15) + "--> OK"
+                self.s = "\n".join(l)
+                self.text.setText(self.s)
 
 
     def send(self):
         # put here the sending function                     ###########
+        self.state=1
+        import os
+        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+        with open(newPath + "\\commands.txt", "w") as f:
+            f.write(",".join(self.s.split("\n")[:-1]))
 
 
+    def showTime(self):
+        currentTime = QTime.currentTime()
 
-        l=self.s.split("\n")[:-1]
-
-        for i in range(len(l)):
-            if True:            # change this condition to whatever u want
-                l[i]=l[i].ljust(15)+"--> OK"
-        self.s="\n".join(l)
-        self.text.setText(self.s)
+        displayTxt = currentTime.toString('hh:mm:ss')
+        # print(displayTxt)
+        self.pushButton_0.click()
 
 
 
