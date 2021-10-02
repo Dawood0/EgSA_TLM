@@ -1,8 +1,8 @@
 import json
 from bitarray import bitarray
 
-json_file = json.load(open('test.json'))
-commands_front = (open('/home/hisham/Desktop/EgSa/EgSA_TLM/txt_files/commands.txt').read()).split(',')
+json_file = json.load(open('../test.json'))
+commands_front = (open('../txt_files/commands.txt').read()).split(',')
 
 pkt_ver = '000'
 pkt_type = '0'
