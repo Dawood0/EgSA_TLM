@@ -446,6 +446,7 @@ class Ui_Widget(QtWidgets.QWidget):
 
         newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
         # newPath="F:\courses\Programming\All Python\Projects folder\Internship_space_\\txt_files"
+
         with open(newPath + "\\chosen_city.txt", "r") as f:
             xx=f.readline()
 
@@ -454,8 +455,16 @@ class Ui_Widget(QtWidgets.QWidget):
             # self.item = self.tableWidget_2.item(1, 1)
             # self.item.setText(xx)
             # self.label_2.setText(xx)
+            import random
+            # print(random.randint(1, 10))
             self.label_55.setText(xx)
-            # print(xx)
+
+        # writing random numbers in the txt file to show in the gui in real time
+        with open(newPath + "\\chosen_city.txt", "w") as f:
+            import random
+            x=random.randint(1, 10)
+            f.write(str(x))
+
 
 
     def showTime(self):

@@ -15,13 +15,20 @@ from PyQt5 import QtCore
 from PyQt5.QtGui import *
 import os
 
+import sys
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+
 class Ui_Widget(object):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
-        Widget.resize(423, 477)
+        Widget.resize(300, 377)
+        Widget.setWindowTitle("Payload Subsystem")
+
         self.comboBox_2 = QtWidgets.QComboBox(Widget)
         self.comboBox_2.setEnabled(True)
-        self.comboBox_2.setGeometry(QtCore.QRect(130, 100, 171, 91))
+        self.comboBox_2.setGeometry(QtCore.QRect(70, 100, 171, 31))
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_2.addItems("Alexandria, Aswan, Assiut, Beheira, Beni Suef,"
                                  " Cairo, Dakahlia, Damietta, Fayoum, Gharbia, Giza,"
@@ -30,7 +37,7 @@ class Ui_Widget(object):
                                  " Red Sea, Al-Sharqia, Soha, South Sinai, Suez, Luxor".split(","))
 
         self.pushButton = QtWidgets.QPushButton(Widget)
-        self.pushButton.setGeometry(QtCore.QRect(120, 360, 181, 71))
+        self.pushButton.setGeometry(QtCore.QRect(80, 300, 141, 51))
 
         font = QtGui.QFont()
         font.setPointSize(14)
@@ -39,11 +46,29 @@ class Ui_Widget(object):
 
         self.comboBox_2.setFont(font)
 
+        # Title
+        self.label_8 = QtWidgets.QLabel(Widget)
+        self.label_8.setGeometry(QtCore.QRect(40, 13, 321, 31))
+        font = QtGui.QFont()
+        font.setPointSize(17)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_8.setFont(font)
+        self.label_8.setObjectName("label_8")
+
+        # line
+        self.line_4 = QtWidgets.QFrame(Widget)
+        self.line_4.setGeometry(QtCore.QRect(0, 45, 1581, 20))
+        self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_4.setObjectName("line_4")
+
+
 
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.label = QtWidgets.QLabel(Widget)
-        self.label.setGeometry(QtCore.QRect(180, 270, 121, 51))
+        self.label.setGeometry(QtCore.QRect(100, 200, 121, 51))
 
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -73,6 +98,7 @@ class Ui_Widget(object):
         Widget.setWindowTitle(_translate("Widget", "Widget"))
         self.pushButton.setText(_translate("Widget", "Save"))
         self.label.setText(_translate("Widget", "Alexandria"))
+        self.label_8.setText(_translate("Widget", "Payload Subsystem"))
 
 
     # here the coordinates are needed to be put in the variable x to be displayed and sent to the second table

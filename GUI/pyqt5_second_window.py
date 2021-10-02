@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import os
+
 
 class Ui_Widget(object):
     def setupUi(self, Widget):
@@ -34,7 +34,7 @@ class Ui_Widget(object):
 
         # clear button
         self.pushButton_2 = QtWidgets.QPushButton(Widget)
-        self.pushButton_2.setGeometry(QtCore.QRect(100, 325, 95, 31))
+        self.pushButton_2.setGeometry(QtCore.QRect(62, 325, 175, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.pushButton_2.setFont(font)
@@ -47,6 +47,36 @@ class Ui_Widget(object):
         font.setPointSize(14)
         self.pushButton_1.setFont(font)
         self.pushButton_1.setObjectName("pushButton")
+
+        # title
+        self.label_8 = QtWidgets.QLabel(Widget)
+        self.label_8.setGeometry(QtCore.QRect(57, 3, 321, 31))
+        font = QtGui.QFont()
+        font.setPointSize(17)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_8.setFont(font)
+        self.label_8.setObjectName("label_8")
+
+        # commands label
+        self.label_9 = QtWidgets.QLabel(Widget)
+        self.label_9.setGeometry(QtCore.QRect(50, 415, 321, 31))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_9.setFont(font)
+        self.label_9.setObjectName("label_8")
+
+        # line
+        self.line_4 = QtWidgets.QFrame(Widget)
+        self.line_4.setGeometry(QtCore.QRect(0, 28, 1581, 20))
+        self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_4.setObjectName("line_4")
+
+
+
 
 
         self.checkBox_7 = QtWidgets.QCheckBox(Widget)
@@ -119,7 +149,7 @@ class Ui_Widget(object):
 
 
         self.text = QtWidgets.QTextBrowser(Widget)
-        self.text.setGeometry(QtCore.QRect(50, 430, 200, 100))
+        self.text.setGeometry(QtCore.QRect(50, 445, 200, 100))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.text.setFont(font)
@@ -140,7 +170,7 @@ class Ui_Widget(object):
         self.pushButton_2.clicked.connect(lambda: self.clear())
 
 
-        self.s = "Commands Sent:\n"
+        self.s = ""
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
@@ -159,8 +189,10 @@ class Ui_Widget(object):
 
         self.pushButton.setText(_translate("Widget", "Choose commands"))
         self.pushButton_1.setText(_translate("Widget", "Send Commands"))
-        self.pushButton_2.setText(_translate("Widget", "Clear"))
+        self.pushButton_2.setText(_translate("Widget", "Clear Commands"))
         self.text.setText(_translate("Widget", ""))
+        self.label_8.setText(_translate("Widget", "Satellite Control"))
+        self.label_9.setText(_translate("Widget", "Commands:"))
 
 
     def checked(self):
@@ -195,19 +227,14 @@ class Ui_Widget(object):
             exec("self.checkBox_{}.setChecked(False)".format(i))
 
     def clear(self):
-        self.s="Commands Sent:\n"
+        self.s=""
         self.text.setText(self.s)
         for i in range(1,12):
             exec("self.checkBox_{}.setChecked(False)".format(i))
 
     def send(self):
         # put here the sending function                     ###########
-
-        x=self.s.split("\n")[1:-1]
-        print(x)
-        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
-        with open(newPath + "\\commands.txt", "w") as f:
-            f.writelines(",".join(x))
+        print(self.s.split("\n")[1:-1])
 
 if __name__ == "__main__":
     import sys
