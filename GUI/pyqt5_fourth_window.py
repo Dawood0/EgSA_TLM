@@ -136,12 +136,15 @@ class Ui_Widget(QtWidgets.QWidget):
         newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
         self.l = []
 
+
+
         with open(newPath + "\\commands.txt", "r") as f:
             self.l = f.readline().split(",")
             if self.l == [""]: self.l = []
         if len(self.l) != 0:
             try:
                 self.textBrowser.append(self.l[self.cnt])
+
             except:
                 pass
             self.cnt += 1
@@ -161,6 +164,8 @@ class Ui_Widget(QtWidgets.QWidget):
         #         time.sleep(1000)
         # with open(newPath + "\\commands.txt", "w") as f:
         #     f.write("")
+
+
 
 
 if __name__ == "__main__":

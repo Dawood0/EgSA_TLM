@@ -274,8 +274,8 @@ class Ui_Widget(QtWidgets.QWidget):
                 for i in range(len(l)):
                     if True:  # change this condition to whatever u want
                         l[i] = l[i].ljust(15) + "--> OK"
-                self.s = "\n".join(l)
-                self.text.setText(self.s)
+                self.s_ = "\n".join(l)
+                self.text.setText(self.s_+"\n")
 
 
     def send(self):
@@ -285,8 +285,13 @@ class Ui_Widget(QtWidgets.QWidget):
         newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
         with open(newPath + "\\commands.txt", "w") as f:
             f.write(",".join(self.s.split("\n")[:-1]))
-        from BACK.stalliete_CTRL import text_file,packet
-        text_file(packet(2,3))
+        # from BACK.stalliete_CTRL import text_file,packet
+        # x=text_file(packet(2,3))
+
+        os.system("python stalliete_CTRL.py")
+
+        print("ahmed")
+
 
 
     def showTime(self):
@@ -295,7 +300,10 @@ class Ui_Widget(QtWidgets.QWidget):
         displayTxt = currentTime.toString('hh:mm:ss')
         # print(displayTxt)
         self.pushButton_0.click()
-
+        # from BACK.stalliete_CTRL import text_file, packet
+        # try:
+        #     text_file(packet(2, 3))
+        # except:pass
 
 
 if __name__ == "__main__":

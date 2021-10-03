@@ -44,10 +44,18 @@ def packet(x,y):
 
 def text_file(packet):
     increment = 0
-    with open('../txt_files/encode.txt','w') as f:
+    tot=""
+    import os
+    newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+    with open(newPath + "\\encode.txt", "w") as f:
+
+        # f.write("")
         for pac in packet:
+            tot+=str(increment)+' '+str(pac)+'\n'
             f.write(str(increment)+' '+str(pac)+'\n')
             increment+=1
-    f.close()
+    return tot
 
-text_file(packet(2,3))
+
+x=text_file(packet(2,3))
+print(x)
