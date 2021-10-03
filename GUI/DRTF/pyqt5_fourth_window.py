@@ -133,7 +133,7 @@ class Ui_Widget(QtWidgets.QWidget):
     def send(self):
         import os
         import time
-        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
         self.l = []
 
 
