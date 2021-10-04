@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Widget(QtWidgets.QWidget):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
-        Widget.resize(305, 600)
+        Widget.resize(385, 600)
         self.checkBox_6 = QtWidgets.QCheckBox(Widget)
         self.checkBox_6.setGeometry(QtCore.QRect(30, 40, 261, 20))
         font = QtGui.QFont()
@@ -25,15 +25,15 @@ class Ui_Widget(QtWidgets.QWidget):
 
         # radio button
         self.radioButton = QtWidgets.QRadioButton(Widget)
-        self.radioButton.setGeometry(QtCore.QRect(50, 550, 84, 19))
+        self.radioButton.setGeometry(QtCore.QRect(50+50, 550, 84, 19))
         self.radioButton.setObjectName("radioButton")
         self.radioButton2 = QtWidgets.QRadioButton(Widget)
-        self.radioButton2.setGeometry(QtCore.QRect(170, 550, 84, 19))
+        self.radioButton2.setGeometry(QtCore.QRect(170+50, 550, 84, 19))
         self.radioButton2.setObjectName("radioButton")
 
         # choose button
         self.pushButton = QtWidgets.QPushButton(Widget)
-        self.pushButton.setGeometry(QtCore.QRect(64, 270, 171, 51))
+        self.pushButton.setGeometry(QtCore.QRect(64+40, 270, 171, 51))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.pushButton.setFont(font)
@@ -42,7 +42,7 @@ class Ui_Widget(QtWidgets.QWidget):
 
         # clear button
         self.pushButton_2 = QtWidgets.QPushButton(Widget)
-        self.pushButton_2.setGeometry(QtCore.QRect(62, 325, 175, 31))
+        self.pushButton_2.setGeometry(QtCore.QRect(62+40, 325, 175, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.pushButton_2.setFont(font)
@@ -50,15 +50,25 @@ class Ui_Widget(QtWidgets.QWidget):
 
         # send button
         self.pushButton_1 = QtWidgets.QPushButton(Widget)
-        self.pushButton_1.setGeometry(QtCore.QRect(70, 360, 161, 51))
+        self.pushButton_1.setGeometry(QtCore.QRect(70+40, 360, 161, 51))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.pushButton_1.setFont(font)
         self.pushButton_1.setObjectName("pushButton")
 
+        # Combobox getTLM subsystem
+        self.comboBox_2 = QtWidgets.QComboBox(Widget)
+        self.comboBox_2.setEnabled(True)
+        self.comboBox_2.setGeometry(QtCore.QRect(255, 163, 121, 15))
+        self.comboBox_2.setObjectName("comboBox_2")
+        self.comboBox_2.addItems(" ,Communication,ADCS,OBC,Power,Payload,Broadcast".split(","))
+
+
+
+
         # title
         self.label_8 = QtWidgets.QLabel(Widget)
-        self.label_8.setGeometry(QtCore.QRect(57, 3, 321, 31))
+        self.label_8.setGeometry(QtCore.QRect(97, 3, 321, 31))
         font = QtGui.QFont()
         font.setPointSize(17)
         font.setBold(True)
@@ -68,7 +78,7 @@ class Ui_Widget(QtWidgets.QWidget):
 
         # commands label
         self.label_9 = QtWidgets.QLabel(Widget)
-        self.label_9.setGeometry(QtCore.QRect(50, 415, 321, 31))
+        self.label_9.setGeometry(QtCore.QRect(50+45, 415, 321, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -157,7 +167,7 @@ class Ui_Widget(QtWidgets.QWidget):
 
 
         self.text = QtWidgets.QTextBrowser(Widget)
-        self.text.setGeometry(QtCore.QRect(50, 445, 200, 100))
+        self.text.setGeometry(QtCore.QRect(50+45, 445, 200, 100))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.text.setFont(font)
@@ -203,6 +213,8 @@ class Ui_Widget(QtWidgets.QWidget):
         self.pushButton_2.clicked.connect(lambda: self.clear())
         self.pushButton_0.clicked.connect(lambda: self.show())
 
+        self.comboBox_2.activated.connect(self.handleActivated)
+
         self.state=0
         self.s = ""
 
@@ -236,6 +248,11 @@ class Ui_Widget(QtWidgets.QWidget):
 
         self.pushButton_0.setText(_translate("Widget", "Show"))
 
+    def handleActivated(self, index):
+        # print(self.comboBox_2.itemText(index))
+        # print(self.comboBox_2.itemData(index))
+        # self.label.setText(self.comboBox_2.currentText())
+        pass
 
     def checked(self):
         l="openCom,closeCom,openADCS,closeADCS,openPayload,closePayload,getTLM,getStoredTLM,getImage,clearTLM,clearImgs".split(",")
@@ -309,6 +326,12 @@ class Ui_Widget(QtWidgets.QWidget):
             sat="01"
         elif self.radioButton.isChecked():
             sat="00"
+
+
+        with open(newPath+"\\sub.txt","w") as f:\
+            f.write(self.comboBox_2.currentText())
+
+
 
         os.system("python stalliete_CTRL.py {}".format(sat))
 
