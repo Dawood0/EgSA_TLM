@@ -12,16 +12,6 @@ commands_front = (open('{}\\txt_files\\commands.txt'.format(az)).read()).split('
 sub_json = json.load(open(f'{az}\\subsystems.json'))
 subsystem = open(f'{az}\\txt_files\\sub.txt').read()
 
-print("Connecting to the DataBase...")
-mydb = mysql.connector.connect(
-   # host="153.92.220.1",
-   host="sql514.main-hosting.eu",
-   user="u952728553_egsa",
-   password="Egsa1234",
-   database="u952728553_egsa"
-)
-print("CONNECTED SUCESSFULLY")
-
 ground = '10'
 pkt_ver = '000'
 pkt_type = '0'
