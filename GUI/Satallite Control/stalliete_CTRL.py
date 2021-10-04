@@ -1,6 +1,9 @@
 import json
 import sys
 import os
+import mysql.connector
+import bitstring
+
 az="\\".join(os.getcwd().split("\\")[:-2])
 json_file = json.load(open('{}\\commands.json'.format(az)))
 commands_front = (open('{}\\txt_files\\commands.txt'.format(az)).read()).split(',')
@@ -8,14 +11,33 @@ commands_front = (open('{}\\txt_files\\commands.txt'.format(az)).read()).split('
 sub_json = json.load(open(f'{az}\\subsystems.json'))
 subsystem = open(f'{az}\\txt_files\\sub.txt').read()
 
+print("Connecting to the DataBase...")
+mydb = mysql.connector.connect(
+   # host="153.92.220.1",
+   host="sql514.main-hosting.eu",
+   user="u952728553_egsa",
+   password="Egsa1234",
+   database="u952728553_egsa"
+)
+print("CONNECTED SUCESSFULLY")
+
 ground = '10'
 pkt_ver = '000'
 pkt_type = '0'
 sec_hdr_flg = '1'
 seq_flg = '11'
-pkt_data_len = '{0:016b}'.format(3)
+pkt_data_len = '{0:072b}'.format(3)
 
 subsys = []
+
+def Targets():
+    targets = []
+    targets_table = mydb.cursor()
+    targets_table.execute("SELECT x_axis, y_axis FROM targets")
+    myresult = targets_table.fetchall()
+    for coor in myresult:
+        targets.append(coor)
+    return targets
 
 def increment(binary):
     if len(binary) == 0:
@@ -33,17 +55,22 @@ def commands(command):
     apid = json_file[str(command)]['vaip']
     return opcode, apid
 
-def packet(x,y,sat):
+def packet(sat):
     pkt_name = "00000000000000" #sequence for the packages from 1 to 2^14
     list_package = []
     for command in commands_front:
-        if command == 'getimage':
+        print("Sending the Space packets....")
+        if command == 'getImage':
             opcode,apid = commands(command)
-            package = "%s%s%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,ground,sat,apid,seq_flg,pkt_name,pkt_data_len,opcode,'{0:08b}'.format(x),'{0:08b}'.format(y))
-            pkt_name = increment(pkt_name)
-            list_package.append(package)
+            for coord in Targets():
+                print("Sending the Space packets....")
+                x,y = coord
+                package = "%s%s%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,ground,sat,apid,seq_flg,pkt_name,pkt_data_len,opcode,bitstring.BitArray(float=x, length=32).bin,bitstring.BitArray(float=y, length=32).bin)
+                pkt_name = increment(pkt_name)
+                list_package.append(package)
 
         elif command == 'getTLM':
+            print("Sending the Space packets....")
             if subsystem in sub_json:
                 opcode,apid = commands(command)
                 sub_id = sub_json[subsystem]
@@ -51,6 +78,7 @@ def packet(x,y,sat):
                 pkt_name = increment(pkt_name)
                 list_package.append(package)
         else:
+            print("Sending the Space packets....")
             opcode,apid = commands(command)
             package = "%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,ground,sat,apid,seq_flg,pkt_name,pkt_data_len,opcode)
             pkt_name = increment(pkt_name)
@@ -61,18 +89,13 @@ def text_file(packet):
     increment = 0
     tot=""
     import os
-    newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
+    newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
     with open(newPath + "\\encode.txt", "w") as f:
-
-        # f.write("")
         for pac in packet:
-            tot+=str(increment)+' '+str(pac)+'\n'
-            f.write(str(increment)+' '+str(pac)+'\n')
-            increment+=1
+            tot+=str(pac)+'\n'
+            f.write(str(pac)+'\n')
     return tot
 
-sat = sys.argv[1]
-# sat="00"
-x=text_file(packet(2,3,sat))
-print(x)
-# comment
+text_file(packet("01"))
+print("The Space packets has been sent.")
+print("FINISED SUCCESSFULLY")
