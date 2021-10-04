@@ -89,13 +89,14 @@ def text_file(packet):
     increment = 0
     tot=""
     import os
-    newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+    newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
     with open(newPath + "\\encode.txt", "w") as f:
         for pac in packet:
             tot+=str(pac)+'\n'
             f.write(str(pac)+'\n')
     return tot
 
-text_file(packet("01"))
+sat=sys.argv[1]
+text_file(packet(sat))
 print("The Space packets has been sent.")
 print("FINISED SUCCESSFULLY")
