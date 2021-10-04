@@ -144,26 +144,24 @@ class Ui_Widget(QtWidgets.QWidget):
         if len(self.l) != 0:
             try:
                 self.textBrowser.append(self.l[self.cnt])
-
             except:
                 pass
             self.cnt += 1
-
         else:
             self.cnt = 0
-
         print(self.l)
-
         if self.cnt == len(self.l):
-            # print("skdfjkdjfdkfjdkfjdfk")
             with open(newPath + "\\commands.txt", "w") as f:
                 f.write("")
+        x=""
+        with open(newPath+"\\DRTF_recv.txt","r") as file:
+            x=file.read()
+            if len(x)!=0:self.textBrowser_2.append(x)
+            x=''
+        if x=='':
+            with open(newPath + "\\DRTF_recv.txt", "w") as file:
+                file.write(x)
 
-            # time.sleep(1)
-
-        #         time.sleep(1000)
-        # with open(newPath + "\\commands.txt", "w") as f:
-        #     f.write("")
 
 
 
