@@ -310,7 +310,7 @@ class Ui_Widget(QtWidgets.QWidget):
         elif self.radioButton.isChecked():
             sat="00"
 
-        os.system("python stalliete_CTRL.py {}+".format(sat))
+        os.system("python stalliete_CTRL.py {}".format(sat))
 
 
 
