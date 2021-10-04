@@ -5,6 +5,7 @@ import mysql.connector
 import bitstring
 
 az="\\".join(os.getcwd().split("\\")[:-2])
+
 json_file = json.load(open('{}\\commands.json'.format(az)))
 commands_front = (open('{}\\txt_files\\commands.txt'.format(az)).read()).split(',')
 
@@ -31,6 +32,15 @@ pkt_data_len = '{0:072b}'.format(3)
 subsys = []
 
 def Targets():
+    print("Connecting to the DataBase...")
+    mydb = mysql.connector.connect(
+       # host="153.92.220.1",
+       host="sql514.main-hosting.eu",
+       user="u952728553_egsa",
+       password="Egsa1234",
+       database="u952728553_egsa"
+    )
+    print("CONNECTED SUCESSFULLY")
     targets = []
     targets_table = mydb.cursor()
     targets_table.execute("SELECT x_axis, y_axis FROM targets")
