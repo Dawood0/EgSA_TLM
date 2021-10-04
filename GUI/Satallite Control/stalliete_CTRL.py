@@ -59,7 +59,8 @@ def packet(sat):
     pkt_name = "00000000000000" #sequence for the packages from 1 to 2^14
     list_package = []
     for command in commands_front:
-        print("Sending the Space packets....")
+        # print(command)
+        # print("Sending the Space packets....")
         if command == 'getImage':
             opcode,apid = commands(command)
             for coord in Targets():
@@ -97,6 +98,7 @@ def text_file(packet):
     return tot
 
 sat=sys.argv[1]
+# sat="00"
 text_file(packet(sat))
 print("The Space packets has been sent.")
 print("FINISED SUCCESSFULLY")

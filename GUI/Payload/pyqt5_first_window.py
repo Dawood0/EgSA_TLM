@@ -108,7 +108,8 @@ class Ui_Widget(object):
 
         newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
 
-        with open(newPath + "\\chosen_city.txt", "w") as f:
+        chosen_city_file=newPath + "\\chosen_city.txt"
+        with open(chosen_city_file, "w") as f:
             f.writelines(x.strip())
         # with open(newPath + "\\DRTF_recv.txt", "w") as f:
         #     f.write("k")

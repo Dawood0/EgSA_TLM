@@ -14,7 +14,7 @@
      "vaip": "0000010"
    },
 
-     "CloseADCS":
+     "closeADCS":
    {"opcode" : "00000011",
      "vaip": "0000010"
    },
