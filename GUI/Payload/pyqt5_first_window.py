@@ -106,7 +106,7 @@ class Ui_Widget(object):
         x = self.comboBox_2.currentText()
         # self.label.setText(x)
 
-        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
 
         with open(newPath + "\\chosen_city.txt", "w") as f:
             f.writelines(x.strip())
