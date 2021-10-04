@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QTimer, QTime, Qt
-
+from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Widget(QtWidgets.QWidget):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
@@ -22,6 +22,14 @@ class Ui_Widget(QtWidgets.QWidget):
         self.checkBox_6.setFont(font)
         self.checkBox_6.setObjectName("checkBox_6")
 
+
+        # radio button
+        self.radioButton = QtWidgets.QRadioButton(Widget)
+        self.radioButton.setGeometry(QtCore.QRect(50, 550, 84, 19))
+        self.radioButton.setObjectName("radioButton")
+        self.radioButton2 = QtWidgets.QRadioButton(Widget)
+        self.radioButton2.setGeometry(QtCore.QRect(170, 550, 84, 19))
+        self.radioButton2.setObjectName("radioButton")
 
         # choose button
         self.pushButton = QtWidgets.QPushButton(Widget)
@@ -175,6 +183,11 @@ class Ui_Widget(QtWidgets.QWidget):
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)
 
+
+
+
+
+
         self.label.hide()
 
 
@@ -215,6 +228,11 @@ class Ui_Widget(QtWidgets.QWidget):
         self.label_8.setText(_translate("Widget", "Satellite Control"))
         self.label_9.setText(_translate("Widget", "Commands:"))
         self.label.setText(_translate("Widget", "ACK"))
+
+
+        self.radioButton.setText( "SAT1")
+        self.radioButton2.setText( "SAT2")
+
 
         self.pushButton_0.setText(_translate("Widget", "Show"))
 
@@ -284,27 +302,28 @@ class Ui_Widget(QtWidgets.QWidget):
         import os
         newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
         # print(newPath)
-        with open(newPath + "\\commands.txt", "w") as f:
+        with open(newPath+"\\commands.txt", "w") as f:
             f.write(",".join(self.s.split("\n")[:-1]))
-        # from BACK.stalliete_CTRL import text_file,packet
-        # x=text_file(packet(2,3))
 
-        os.system("python stalliete_CTRL.py")
+        if self.radioButton2.isChecked():
+            sat="01"
+        elif self.radioButton.isChecked():
+            sat="00"
 
-        print("ahmed")
+        os.system("python stalliete_CTRL.py {}+".format(sat))
+
+
+
 
 
 
     def showTime(self):
         currentTime = QTime.currentTime()
 
-        displayTxt = currentTime.toString('hh:mm:ss')
+        # displayTxt = currentTime.toString('hh:mm:ss')
         # print(displayTxt)
         self.pushButton_0.click()
-        # from BACK.stalliete_CTRL import text_file, packet
-        # try:
-        #     text_file(packet(2, 3))
-        # except:pass
+
 
 
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 {
- "Communication": "0000001"
- "ADCS":        "0000010"
- "OBC":         "0000011"
- "Power":       "0000100"
- "Payload":     "0000101"
+ "Communication": "0000001",
+ "ADCS":        "0000010",
+ "OBC":         "0000011",
+ "Power":       "0000100",
+ "Payload":     "0000101",
  "Broadcast":   "0000110"
 }

@@ -5,8 +5,8 @@ az="\\".join(os.getcwd().split("\\")[:-2])
 json_file = json.load(open('{}\\commands.json'.format(az)))
 commands_front = (open('{}\\txt_files\\commands.txt'.format(az)).read()).split(',')
 
-sub_json = json.load(open('../subsystems.json'))
-subsystem = open('../txt_files/sub.txt').read()
+sub_json = json.load(open(f'{az}\\subsystems.json'))
+subsystem = open(f'{az}\\txt_files\\sub.txt').read()
 
 ground = '10'
 pkt_ver = '000'
@@ -61,7 +61,7 @@ def text_file(packet):
     increment = 0
     tot=""
     import os
-    newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+    newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
     with open(newPath + "\\encode.txt", "w") as f:
 
         # f.write("")
@@ -72,5 +72,6 @@ def text_file(packet):
     return tot
 
 sat = sys.argv[1]
+# sat="00"
 x=text_file(packet(2,3,sat))
 print(x)
