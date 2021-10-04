@@ -1,15 +1,21 @@
 import json
-
+import sys
 import os
 az="\\".join(os.getcwd().split("\\")[:-2])
-json_file = json.load(open('{}\\test.json'.format(az)))
+json_file = json.load(open('{}\\commands.json'.format(az)))
 commands_front = (open('{}\\txt_files\\commands.txt'.format(az)).read()).split(',')
 
+sub_json = json.load(open('../subsystems.json'))
+subsystem = open('../txt_files/sub.txt').read()
+
+ground = '10'
 pkt_ver = '000'
 pkt_type = '0'
 sec_hdr_flg = '1'
 seq_flg = '11'
 pkt_data_len = '{0:016b}'.format(3)
+
+subsys = []
 
 def increment(binary):
     if len(binary) == 0:
@@ -27,18 +33,26 @@ def commands(command):
     apid = json_file[str(command)]['vaip']
     return opcode, apid
 
-def packet(x,y):
+def packet(x,y,sat):
     pkt_name = "00000000000000" #sequence for the packages from 1 to 2^14
     list_package = []
     for command in commands_front:
         if command == 'getimage':
             opcode,apid = commands(command)
-            package = "%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,apid,seq_flg,pkt_name,pkt_data_len,opcode,'{0:08b}'.format(x),'{0:08b}'.format(y))
+            package = "%s%s%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,ground,sat,apid,seq_flg,pkt_name,pkt_data_len,opcode,'{0:08b}'.format(x),'{0:08b}'.format(y))
             pkt_name = increment(pkt_name)
             list_package.append(package)
+
+        elif command == 'getTLM':
+            if subsystem in sub_json:
+                opcode,apid = commands(command)
+                sub_id = sub_json[subsystem]
+                package = "%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,ground,sat,sub_id,seq_flg,pkt_name,pkt_data_len,opcode)
+                pkt_name = increment(pkt_name)
+                list_package.append(package)
         else:
             opcode,apid = commands(command)
-            package = "%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,apid,seq_flg,pkt_name,pkt_data_len,opcode)
+            package = "%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,ground,sat,apid,seq_flg,pkt_name,pkt_data_len,opcode)
             pkt_name = increment(pkt_name)
             list_package.append(package)
     return list_package
@@ -47,8 +61,7 @@ def text_file(packet):
     increment = 0
     tot=""
     import os
-    newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
-
+    newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
     with open(newPath + "\\encode.txt", "w") as f:
 
         # f.write("")
@@ -58,6 +71,6 @@ def text_file(packet):
             increment+=1
     return tot
 
-
-x=text_file(packet(2,3))
+sat = sys.argv[1]
+x=text_file(packet(2,3,sat))
 print(x)
