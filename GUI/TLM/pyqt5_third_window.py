@@ -444,7 +444,7 @@ class Ui_Widget(QtWidgets.QWidget):
     def click(self):
 
 
-        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-1]), "txt_files")
+        newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
         # newPath="F:\courses\Programming\All Python\Projects folder\Internship_space_\\txt_files"
 
         with open(newPath + "\\chosen_city.txt", "r") as f:
