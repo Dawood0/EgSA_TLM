@@ -14,10 +14,10 @@ subsystem = open(f'sub.txt').read()
 
 ground = '10'
 pkt_ver = '000'
-pkt_type = '0'
-sec_hdr_flg = '1'
+pkt_type = '1'
+sec_hdr_flg = '0'
 seq_flg = '11'
-pkt_data_len = '{0:072b}'.format(3)
+pkt_data_len = '{0:016b}'.format(8)
 
 subsys = []
 
@@ -61,7 +61,7 @@ def packet(sat):
     for command in commands_front:
         # print(command)
         # print("Sending the Space packets....")
-        if command == 'getImage':
+        if command == 'captureImage':
             opcode,apid = commands(command)
             for coord in Targets():
                 print("Sending the Space packets....")
