@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Widget(QtWidgets.QWidget):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
-        Widget.resize(385, 600)
+        Widget.resize(385, 600+30)
         self.checkBox_6 = QtWidgets.QCheckBox(Widget)
         self.checkBox_6.setGeometry(QtCore.QRect(30, 40, 261, 20))
         font = QtGui.QFont()
@@ -25,15 +25,15 @@ class Ui_Widget(QtWidgets.QWidget):
 
         # radio button
         self.radioButton = QtWidgets.QRadioButton(Widget)
-        self.radioButton.setGeometry(QtCore.QRect(50+50, 550, 84, 19))
+        self.radioButton.setGeometry(QtCore.QRect(50+50, 550+30, 84, 19))
         self.radioButton.setObjectName("radioButton")
         self.radioButton2 = QtWidgets.QRadioButton(Widget)
-        self.radioButton2.setGeometry(QtCore.QRect(170+50, 550, 84, 19))
+        self.radioButton2.setGeometry(QtCore.QRect(170+50, 550+30, 84, 19))
         self.radioButton2.setObjectName("radioButton")
 
         # choose button
         self.pushButton = QtWidgets.QPushButton(Widget)
-        self.pushButton.setGeometry(QtCore.QRect(64+40, 270, 171, 51))
+        self.pushButton.setGeometry(QtCore.QRect(64+40, 270+30, 171, 51))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.pushButton.setFont(font)
@@ -42,7 +42,7 @@ class Ui_Widget(QtWidgets.QWidget):
 
         # clear button
         self.pushButton_2 = QtWidgets.QPushButton(Widget)
-        self.pushButton_2.setGeometry(QtCore.QRect(62+40, 325, 175, 31))
+        self.pushButton_2.setGeometry(QtCore.QRect(62+40, 325+30, 175, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.pushButton_2.setFont(font)
@@ -50,7 +50,7 @@ class Ui_Widget(QtWidgets.QWidget):
 
         # send button
         self.pushButton_1 = QtWidgets.QPushButton(Widget)
-        self.pushButton_1.setGeometry(QtCore.QRect(70+40, 360, 161, 51))
+        self.pushButton_1.setGeometry(QtCore.QRect(70+40, 360+30, 161, 51))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.pushButton_1.setFont(font)
@@ -78,7 +78,7 @@ class Ui_Widget(QtWidgets.QWidget):
 
         # commands label
         self.label_9 = QtWidgets.QLabel(Widget)
-        self.label_9.setGeometry(QtCore.QRect(50+45, 415, 321, 31))
+        self.label_9.setGeometry(QtCore.QRect(50+45, 415+30, 321, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -165,9 +165,15 @@ class Ui_Widget(QtWidgets.QWidget):
         self.checkBox_11.setFont(font)
         self.checkBox_11.setObjectName("checkBox_1")
 
+        self.checkBox_18 = QtWidgets.QCheckBox(Widget)
+        self.checkBox_18.setGeometry(QtCore.QRect(30, 260, 261, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.checkBox_18.setFont(font)
+        self.checkBox_18.setObjectName("checkBox_18")
 
         self.text = QtWidgets.QTextBrowser(Widget)
-        self.text.setGeometry(QtCore.QRect(50+45, 445, 200, 100))
+        self.text.setGeometry(QtCore.QRect(50+45, 445+30, 200, 100))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.text.setFont(font)
@@ -232,6 +238,7 @@ class Ui_Widget(QtWidgets.QWidget):
         self.checkBox_5.setText(_translate("Widget", "getImage"))
         self.checkBox_10.setText(_translate("Widget", "clearTLM"))
         self.checkBox_11.setText(_translate("Widget", "clearImgs"))
+        self.checkBox_18.setText(_translate("Widget", "captureImage"))
 
         self.pushButton.setText(_translate("Widget", "Choose commands"))
         self.pushButton_1.setText(_translate("Widget", "Send Commands"))
@@ -255,7 +262,7 @@ class Ui_Widget(QtWidgets.QWidget):
         pass
 
     def checked(self):
-        l="openCom,closeCom,openADCS,closeADCS,openPayload,closePayload,getTLM,getStoredTLM,getImage,clearTLM,clearImgs".split(",")
+        l="openCom,closeCom,openADCS,closeADCS,openPayload,closePayload,getTLM,getStoredTLM,getImage,clearTLM,clearImgs,captureImage".split(",")
 
         if self.checkBox_6.isChecked():
             self.s+=l[0]+"\n"
@@ -280,6 +287,8 @@ class Ui_Widget(QtWidgets.QWidget):
             self.s += l[9] + "\n"
         elif self.checkBox_11.isChecked():
             self.s += l[10] + "\n"
+        elif self.checkBox_18.isChecked():
+            self.s +=l[11]+"\n"
         self.text.setText(self.s)
         # print(self.checkBox_6.())
         for i in range(1,12):
