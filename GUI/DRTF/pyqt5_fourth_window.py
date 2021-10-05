@@ -137,8 +137,8 @@ class Ui_Widget(QtWidgets.QWidget):
         self.l = []
 
 
-
-        with open(newPath + "\\commands.txt", "r") as f:
+        command_file=r"F:\courses\Programming\All Python\Projects folder\EgSA_TLM\GUI\Satallite Control\commands.txt"
+        with open(command_file, "r") as f:
             self.l = f.readline().split(",")
             if self.l == [""]: self.l = []
         if len(self.l) != 0:
@@ -151,7 +151,7 @@ class Ui_Widget(QtWidgets.QWidget):
             self.cnt = 0
         print(self.l)
         if self.cnt == len(self.l):
-            with open(newPath + "\\commands.txt", "w") as f:
+            with open(command_file, "w") as f:
                 f.write("")
         x=""
         with open(newPath+"\\DRTF_recv.txt","r") as file:

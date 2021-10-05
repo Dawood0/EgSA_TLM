@@ -7,10 +7,10 @@ import bitstring
 az="\\".join(os.getcwd().split("\\")[:-2])
 
 json_file = json.load(open('{}\\commands.json'.format(az)))
-commands_front = (open('{}\\txt_files\\commands.txt'.format(az)).read()).split(',')
+commands_front = (open('commands.txt').read()).split(',')
 
 sub_json = json.load(open(f'{az}\\subsystems.json'))
-subsystem = open(f'{az}\\txt_files\\sub.txt').read()
+subsystem = open(f'sub.txt').read()
 
 ground = '10'
 pkt_ver = '000'

@@ -245,7 +245,7 @@ class Ui_Widget(QtWidgets.QWidget):
         self.radioButton.setText( "SAT1")
         self.radioButton2.setText( "SAT2")
 
-
+        self.c=0
         self.pushButton_0.setText(_translate("Widget", "Show"))
 
     def handleActivated(self, index):
@@ -319,7 +319,7 @@ class Ui_Widget(QtWidgets.QWidget):
         self.state=1
         import os
         newPath = os.path.join("\\".join(os.getcwd().split("\\")[:-2]), "txt_files")
-        commands_file=newPath+"\\commands.txt"
+        commands_file="commands.txt"
         with open(commands_file, "w") as f:
             f.write(",".join(self.s.split("\n")[:-1]))
 
@@ -328,13 +328,15 @@ class Ui_Widget(QtWidgets.QWidget):
         elif self.radioButton.isChecked():
             sat="00"
 
-        sub_file=newPath+"\\sub.txt"
+        sub_file="sub.txt"
         with open(sub_file,"w") as f:
             f.write(self.comboBox_2.currentText())
 
 
 
         os.system("python stalliete_CTRL.py {}".format(sat))
+        # os.system("python send.py")
+        os.system("python send.py")
 
 
 
