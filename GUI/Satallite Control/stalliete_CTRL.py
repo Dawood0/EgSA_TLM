@@ -17,8 +17,8 @@ pkt_ver = '000'
 pkt_type = '1'
 sec_hdr_flg = '0'
 seq_flg = '11'
-pkt_data_len = '{0:016b}'.format(8)
-
+pkt_data_len = '{0:016b}'.format(0)
+pkt_data_len_image = '{0:016b}'.format(8)
 subsys = []
 
 def Targets():
@@ -66,7 +66,7 @@ def packet(sat):
             for coord in Targets():
                 print("Sending the Space packets....")
                 x,y = coord
-                package = "%s%s%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,ground,sat,apid,seq_flg,pkt_name,pkt_data_len,opcode,bitstring.BitArray(float=x, length=32).bin,bitstring.BitArray(float=y, length=32).bin)
+                package = "%s%s%s%s%s%s%s%s%s%s%s%s"%(pkt_type,pkt_ver,sec_hdr_flg,ground,sat,apid,seq_flg,pkt_name,pkt_data_len_image,opcode,bitstring.BitArray(float=x, length=32).bin,bitstring.BitArray(float=y, length=32).bin)
                 pkt_name = increment(pkt_name)
                 list_package.append(package)
 
