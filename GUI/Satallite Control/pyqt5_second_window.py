@@ -226,14 +226,14 @@ class Ui_Widget(QtWidgets.QWidget):
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
-        Widget.setWindowTitle(_translate("Widget", "Widget"))
+        Widget.setWindowTitle(_translate("Widget", "Satellite Control"))
         self.checkBox_6.setText(_translate("Widget", "openCom"))
         self.checkBox_7.setText(_translate("Widget", "closeCom"))
         self.checkBox_8.setText(_translate("Widget", "openADCS"))
         self.checkBox_9.setText(_translate("Widget", "closeADCS"))
         self.checkBox_1.setText(_translate("Widget", "openPayload"))
         self.checkBox_2.setText(_translate("Widget", "closePayload"))
-        self.checkBox_3.setText(_translate("Widget", "getTLM"))
+        self.checkBox_3.setText(_translate("Widget", "getTLM        ------------->"))
         self.checkBox_4.setText(_translate("Widget", "getStoredTLM"))
         self.checkBox_5.setText(_translate("Widget", "getImage"))
         self.checkBox_10.setText(_translate("Widget", "clearTLM"))

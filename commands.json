@@ -1,7 +1,7 @@
 {
   "openCom":
    {"opcode" : "00000000",
-     "vaip": "00000000001"
+     "vaip": "0000001"
    },
 
   "closeCom":

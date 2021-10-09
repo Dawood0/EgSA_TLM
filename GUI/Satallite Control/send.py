@@ -59,9 +59,10 @@ if __name__ == "__main__":
     import time
 
     while True:
-        sender = Sender(host="10.200.12.226", file=r"F:\courses\Programming\All Python\Projects folder\EgSA_TLM\txt_files\encode.txt")
+        sender = Sender(host="10.10.225.63", file=r"F:\courses\Programming\All Python\Projects folder\EgSA_TLM\txt_files\encode.txt")
         sender.send
         time.sleep(5)
+        # time.sleep(2)
 
         # os.system(f"type nul > commands.txt")
 

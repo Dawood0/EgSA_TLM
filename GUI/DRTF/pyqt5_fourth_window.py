@@ -100,12 +100,17 @@ class Ui_Widget(QtWidgets.QWidget):
         self.pushButton.setGeometry(QtCore.QRect(1300, 10, 141, 41))
         self.pushButton.setObjectName("pushButton")
 
+        self.pushButton2 = QtWidgets.QPushButton(Widget)
+        self.pushButton2.setGeometry(QtCore.QRect(130, 370, 141, 41))
+        self.pushButton2.setObjectName("pushButton")
+
         timer = QTimer(self)
         timer.timeout.connect(self.showTime)
         timer.start(1000)  # update every second
         self.showTime()
 
         self.pushButton.clicked.connect(lambda: self.send())
+        self.pushButton.hide()
         self.cnt = 0
 
         self.retranslateUi(Widget)
@@ -113,15 +118,18 @@ class Ui_Widget(QtWidgets.QWidget):
 
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
-        Widget.setWindowTitle(_translate("Widget", "Widget"))
+        Widget.setWindowTitle(_translate("Widget", "DRTF Sybsystem"))
         self.label.setText(_translate("Widget", "DRTF Subsystem"))
         self.label_2.setText(_translate("Widget", "Packet to send:"))
         self.label_3.setText(_translate("Widget", "Send"))
-        self.label_4.setText(_translate("Widget", "Packet Recieved:"))
-        self.label_5.setText(_translate("Widget", "Recieve"))
+        self.label_4.setText(_translate("Widget", "Packet Received:"))
+        self.label_5.setText(_translate("Widget", "Receive"))
         self.pushButton.setText(_translate("Widget", "Send to SAT"))
+        self.pushButton2.setText(_translate("Widget", "Manual Update"))
         self.label_6.setText(_translate("Widget", "Sent to telemetry"))
         self.label_7.setText(_translate("Widget", "Sent to satallite control"))
+
+
 
     def showTime(self):
         currentTime = QTime.currentTime()
